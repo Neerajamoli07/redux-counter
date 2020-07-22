@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions/index'
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
-import * as actionTypes from '../../store/actions';
+
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
+    // state = {
+    //     counter: 0
+    // }
 
-    counterChangedHandler = ( action, value ) => {
-        switch ( action ) {
-            case 'inc':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-                break;
-            case 'dec':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-                break;
-            case 'add':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-                break;
-            case 'sub':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-                break;
-        }
-    }
+    // counterChangedHandler = ( action, value ) => {
+    //     switch ( action ) {
+    //         case 'inc':
+    //             this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
+    //             break;
+    //         case 'dec':
+    //             this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
+    //             break;
+    //         case 'add':
+    //             this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
+    //             break;
+    //         case 'sub':
+    //             this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
+    //             break;
+    //     }
+    // }
 
     render () {
         return (
@@ -57,12 +58,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-       onIncreamentCounter: () => dispatch({type: actionTypes.INCREMENT}),
-       onDecreamentCounter: () => dispatch({type: actionTypes.DECREMENT}),
-       onAddCounter: () => dispatch({type: actionTypes.ADD, val: 10}),
-       onSubtractCounter: () => dispatch({type: actionTypes.SUBTRACT,val: 15}),
-       onStoreResult: (result) => dispatch({type: actionTypes.STORE_RESULT,result: result}),
-       onDeleteResult: (id) => dispatch({type: actionTypes.DELETE_RESULT,resultElId: id}),
+       onIncreamentCounter: () => dispatch(actionCreators.increment()),
+       onDecreamentCounter: () => dispatch(actionCreators.decrement()),
+       onAddCounter: () => dispatch(actionCreators.add(10)),
+       onSubtractCounter: () => dispatch(actionCreators.subtract(15)),
+       onStoreResult: (result) => dispatch(actionCreators.storeResult(result)),
+       onDeleteResult: (id) => dispatch(actionCreators.deleteResult(id)),
     };
 }
 
